@@ -5,10 +5,11 @@
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-
   config.vm.box = "niepi/ubuntu-13.10-puppet"
+  config.vm.network "private_network", type: :dhcp
   #ES1
   config.vm.define "es1" do | es1 |
+    es1.vm.network "forwarded_port", guest: 9200, host: 9200, protocol: 'tcp'
     es1.vm.hostname = "es1"
     es1.vm.provider "virtualbox" do |vb|
       vb.gui = true
@@ -17,7 +18,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #PUPPET THINGS
   config.vm.synced_folder "puppet/", "/etc/puppet/"
   config.vm.provision :shell, :path => 'shell/init.sh', :args => '/vagrant/shell'
-  config.vm.network "public_network" , :bridge => 'en0: Wi-Fi (AirPort)'
   es1.vm.provision "puppet" do |puppet|
      puppet.manifests_path = "puppet/manifests"
      puppet.manifest_file  = "base.pp"
@@ -38,7 +38,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #PUPPET THINGS
   config.vm.synced_folder "puppet/", "/etc/puppet/"
   config.vm.provision :shell, :path => 'shell/init.sh', :args => '/vagrant/shell'
-  config.vm.network "public_network" , :bridge => 'en0: Wi-Fi (AirPort)'
   
   es2.vm.provision "puppet" do |puppet|
      puppet.manifests_path = "puppet/manifests"

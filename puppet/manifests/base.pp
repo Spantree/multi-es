@@ -9,7 +9,7 @@ if $elasticsearch_values == undef {
 
 $elasticsearch_publish_host = $vm_type ? {
   'vagrant' => $ipaddress_eth1,
-  default   => $ipaddress_eth0
+  default   => $ipaddress_eth1
 }
 
 $elasticsearch_version = $elasticsearch_values['version']
