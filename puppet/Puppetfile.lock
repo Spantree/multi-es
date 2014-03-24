@@ -1,0 +1,30 @@
+FORGE
+  remote: http://forge.puppetlabs.com
+  specs:
+    elasticsearch/elasticsearch (0.2.3)
+      puppetlabs/stdlib (>= 3.0.0)
+    puppetlabs/apt (1.4.2)
+      puppetlabs/stdlib (>= 2.2.1)
+    puppetlabs/stdlib (4.1.0)
+
+GIT
+  remote: git://github.com/puphpet/puppetlabs-apt.git
+  ref: master
+  sha: 9b165839640210b8d99e5853bfe171d322f79439
+  specs:
+    apt (1.4.0)
+      puppetlabs/stdlib (>= 2.2.1)
+
+GIT
+  remote: https://github.com/Spantree/puppet-java7.git
+  ref: master
+  sha: 2085f6ec684227e57356a4c81ed5399783b11431
+  specs:
+    java7 (0.2.1)
+      puppetlabs/apt (>= 1.0.1)
+
+DEPENDENCIES
+  apt (>= 0)
+  elasticsearch/elasticsearch (= 0.2.3)
+  java7 (>= 0)
+
